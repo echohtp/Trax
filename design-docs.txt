@@ -1,0 +1,39 @@
+2 things to happen for an object:
+
+1. create html thing (iframe)
+
+handle_url now returns 2 functions:
+	1. returns an html snippet
+	2. returns a bind obj
+
+
+view OR edit
+
+a, b = handle_url(url)
+
+$(#foo).append(stuff + a(div_id) + stuff);
+var obj = document.dig around for object
+
+b(obj) // which sets up binding in 2.
+
+2. object events
+		ended
+		playing
+		loaded -- do not care if we write code properly
+
+
+---
+
+5 files:
+--------
+youtube.js
+soundcloud.js
+compat.js
+viewedit.js
+view.js
+edit.js
+
+---
+
+fixup server.js so that we have a devel.js running on port 3000
+have a prod.js that runs on port 80
