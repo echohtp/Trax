@@ -1,6 +1,6 @@
 # Trax - SEND YO TRAX OUT! 
 
-Trax is a on the fly playlist generator for youtube and soundcloud media. Traxlists can be quickly generated and shared with your friends. Give them unique names and edit them later for a rotation playlist of awesome! 
+Trax is a on the fly playlist generator for youtube and soundcloud media. Traxlists can be quickly generated and shared with your friends. Give them unique names and edit them later for a rotating playlist of awesome! 
 There is also support for music subreddits. Trax also supports subreddits so you can listen to your favorite subreddits with ease.
 
 ## How to use:
