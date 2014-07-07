@@ -9,10 +9,10 @@ Once you've curiated your traxlist click "Save Traxlist" which will copy the tra
 To listen to your favorite subreddits use the /r/ endpoint and supply some musical subreddits. I am a fan of http://trax.im/r/futurebeats+futuregarage+indie
 
 ### Check it out!
-http://trax.im/p/thefirstchillout
-http://trax.im/p/Make_It_Through_Monday
-http://trax.im/r/futurebeats+futuregarage+indie
-http://trax.im/r/bossanova+jazz
+* http://trax.im/p/thefirstchillout
+* http://trax.im/p/Make_It_Through_Monday
+* http://trax.im/r/futurebeats+futuregarage+indie
+* http://trax.im/r/bossanova+jazz
 
 
 ## Installation instructions:
