@@ -15,6 +15,9 @@ svg {
 	padding-left:65px;
 
 }
+.group-padding * { 
+	padding-left: 10px;
+}
 
 .sc-artist {
 	font: 13px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;

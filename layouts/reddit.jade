@@ -3,21 +3,24 @@ html(lang='en')
 	head
 		title Trax
 		
-		link(rel="stylesheet", type="css/text", href="css/bootstrap.css")
-		link(rel="stylesheet", type="css/text", href="css/style.css")
-		script(type="text/javascript", src="js/jquery.js")
-		script(type="text/javascript", src="js/underscore.js")
+		link(rel="stylesheet", type="css/text", href="../css/bootstrap.css")
+		link(rel="stylesheet", type="css/text", href="../css/style.css")
+		script(type="text/javascript", src="../js/jquery.js")
+		script(type="text/javascript", src="../js/underscore.js")
 		script(type="text/javascript", src="http://#{host}:#{port}/socket.io/socket.io.js")
-		script(type="text/javascript", src="js/firebase.js")
-		script(type="text/javascript", src="js/backbone.js")
-		script(type="text/javascript", src="js/swfobject.js")
+		script(type="text/javascript", src="../js/firebase.js")
+		script(type="text/javascript", src="../js/backbone.js")
+		script(type="text/javascript", src="../js/swfobject.js")
 		script(type="text/javascript" , src="//connect.soundcloud.com/sdk.js")
 		script(type="text/javascript", src="https://w.soundcloud.com/player/api.js")
-		script(type="text/javascript" , src="js/jquery.swfobject.1-1-1.min.js")
-		script(type='text/javascript', src="js/trax.js")
+		script(type="text/javascript" , src="../js/jquery.swfobject.1-1-1.min.js")
+		script(type='text/javascript', src="../js/trax.js")
 		script.
 			$(function(){
-
+				var tUrls = '#{urls}'.split(',');
+				tUrls.forEach(function(url){
+					addTrax(url);
+				});
 				
 			});
 
@@ -26,10 +29,11 @@ html(lang='en')
 			h1 Trax.im - Send Yo Trax Out!
 
 		div.container
-			div.row
-				form
-					input.form-control(type="text" id="textInputUrl" placeholder="Enter a soundcloud or youtube url and press enter!")
-					button.form-control.btn.btn-danger(id="btnAdd") SEND IT
+			div.row 
+				form.form-inline
+					div.form-group.group-padding
+						input.form-control( style="width: 700px" type="text" id="textInputUrl" placeholder="Enter a soundcloud or youtube url and press enter!")
+						button.form-control.btn.btn-danger(id="btnAdd") ADD TRAX
 
 
 			div.row(id="traxList")
@@ -48,12 +52,12 @@ html(lang='en')
 				div.sc-title
 					span(style="background-color: #222222") <%= title %>
 				div.pull-center
-					img.sc-play(src="img/play.png" name!="<%= dId %>")
+					img.sc-play(src="../img/play.png" name!="<%= dId %>")
 
 		script(type="text/template" id="yt-container-template")
 			div.yt(name!='<%= dId %>')
-				div.yt-container.col-md-8(id!="<%= dId %>" style!="background: url( <%= thumbnail_url %> ) no-repeat center; background-size: 100%;")
+				div.yt-container(id!="<%= dId %>" style!="background: url( <%= thumbnail_url %> ) no-repeat center; background-size: 100%;")
 					div.pull-center
-						img.sc-play(src="img/play.png" name!="<%= dId %>")
+						img.sc-play(src="../img/play.png" name!="<%= dId %>")
 				
 

@@ -17,7 +17,8 @@ var Model = Backbone.Model.extend({
 		object: '',
 		provider: '',
 		order: '',
-		loaded: 'false'
+		loaded: 'false',
+		status: 'stopped'
 	},
 
 	playNext: function(){
@@ -30,14 +31,21 @@ var Model = Backbone.Model.extend({
 
 	play: function(){
 		var that = this;
+		traxList.where({'status': 'playing'}).forEach(function(tElement){
+			tElement.stop();
+		});
+
 		if (this.get('provider') === 'soundcloud' && this.get('loaded') === 'true'){
 			this.get('object').play();
+			this.set('status', 'playing');
 		}else if (this.get('provider') === 'soundcloud' && this.get('loaded') === 'false'){
 			this.load();
 		}
 
 		if (this.get('provider') === 'youtube' && this.get('loaded') === 'true'){
+			
 			this.get('object').playVideo();
+			this.set('status', 'playing');
 		}else if ( this.get('provider') ==='youtube' && this.get('loaded') === 'false'){
 			this.load();
 		}
@@ -46,11 +54,16 @@ var Model = Backbone.Model.extend({
 	stop: function(){
 		var that = this;
 		if ( this.get('provider') === 'soundcloud'){
+			
 			this.get('object').toggle();
+			this.set('status', 'stopped');
 		}
 
 		if (this.get('provider') === 'youtube'){
+			
 			this.get('object').stopVideo();
+			$('div[name=' + this.get('dId') + ']').animate({height: '166px'},1000);
+			this.set('status', 'stopped');
 		}
 
 	},
@@ -108,7 +121,11 @@ var traxView = Backbone.View.extend({
 var traxList = new mCollection();
 
 var scOptions = {
-	'maxheight': '166'
+	'maxheight': '166',
+	'buying': 'false',
+	'show_comments': 'false',
+	'show_playcount': 'false',
+	'hide_related': 'true'
 };
 
 SC.initialize({
@@ -128,6 +145,7 @@ function onYouTubePlayerReady(pId){
 			$('div[name=' + pId + ']').animate({height: '400px'},1000);
 		}
 		if (state == '2'){
+
 			//$('div[name=' + pId + ']').animate({height: '166px'},1000);                       
 		}
 		if (state == '0'){
