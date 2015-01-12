@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	{{>providers}}
+	{{>local_js}}
+	{{>css}}
+	
+	
+	<!-- IMPORT MY JAVASCRIPZ -->
+    <script src="../../../js/viewedit.js"></script>
+	<script src="../../../js/compat.js"></script>
+	<script src="../../../js/site/soundcloud.js"></script>
+	<script src="../../../js/site/youtube.js"></script>
+	<script src="../../../js/{{local_script}}"></script>
+	{{#local_script2}}
+	<script src="../../../js/{{local_script2}}"></script>
+	{{/local_script2}}
+
+	<!-- EOI -->
+{{>analytics}}
+</head>
+<body>
+
+<div class="container">
+	
+	{{>site_header}}
+
+    {{>user_stuffs}}
+
+	{{>reddit_h}}
+
+    {{>playlist_data}}
+
+{{>footer}}
+</div>
+</body>
+</html>
