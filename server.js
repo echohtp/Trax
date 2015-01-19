@@ -104,9 +104,29 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/',
+    path: '/at/',
     handler: function(request, reply) {
-        var fn = Jade.compileFile('layouts/index.jade', {});
+        var fn = Jade.compileFile('layouts/alltrax.jade', {});
+        var html = fn(sOptions);
+        reply(html);
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/random/',
+    handler: function(request, reply) {
+        var fn = Jade.compileFile('layouts/random.jade', {});
+        var html = fn(sOptions);
+        reply(html);
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/faq/',
+    handler: function(request, reply) {
+        var fn = Jade.compileFile('layouts/faq.jade', {});
         var html = fn(sOptions);
         reply(html);
     }
