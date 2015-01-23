@@ -133,6 +133,16 @@ server.route({
 });
 
 
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function(request, reply){
+        var fn = Jade.compileFile('layouts/index.jade', {});
+        var html = fn(sOptions);
+        reply(html);   
+    }
+});
+
 var fbRef = new Firebase('https://traxlist.firebaseio.com/new/');
 
 fbRef.on('child_added', function(dSnap) {
