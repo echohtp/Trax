@@ -3,35 +3,21 @@ html(lang='en')
 	head
 		title Trax
 		
-		link(rel="stylesheet", type="css/text", href="css/bootstrap.css")
-		link(rel="stylesheet", type="css/text", href="css/style.css")
-		script(type="text/javascript", src="js/jquery.js")
-		script(type="text/javascript", src="js/underscore.js")
+		link(rel="stylesheet", type="css/text", href="../css/bootstrap.css")
+		link(rel="stylesheet", type="css/text", href="../css/style.css")
+		script(type="text/javascript", src="../js/jquery.js")
+		script(type="text/javascript", src="../js/underscore.js")
 		script(type="text/javascript", src="http://#{host}:#{port}/socket.io/socket.io.js")
-		script(type="text/javascript", src="js/firebase.js")
-		script(type="text/javascript", src="js/backbone.js")
-		script(type="text/javascript", src="js/swfobject.js")
+		script(type="text/javascript", src="../js/firebase.js")
+		script(type="text/javascript", src="../js/backbone.js")
+		script(type="text/javascript", src="../js/swfobject.js")
 		script(type="text/javascript" , src="//connect.soundcloud.com/sdk.js")
 		script(type="text/javascript", src="https://w.soundcloud.com/player/api.js")
-		script(type="text/javascript" , src="js/jquery.swfobject.1-1-1.min.js")
-		script(type='text/javascript', src="js/trax.js")
+		script(type="text/javascript" , src="../js/jquery.swfobject.1-1-1.min.js")
+		script(type='text/javascript', src="../js/trax.js")
 		script.
 			$(function(){
-				$('#playlist_save_url').val('http://trax.im/p/' + tListID);
-				
-				$('#btnAdd').click(function(event){
-					event.preventDefault();
-					var newUrl = $('#textInputUrl').val();
-					$('#textInputUrl').val('');
-					addTrax(newUrl);
-					
-				});
-				
-				$('#resave_traxlist').click(function(event){
-					event.preventDefault();
-					saveTraxList();
-				
-				});
+
 			});
 
 		style.
@@ -54,21 +40,7 @@ html(lang='en')
 				a(href="/" class="title")
 					h1 SEND YO TRAX OUT
 
-			div.input-group
-				span.input-group-addon
-					a(href="#" rel="tooltip" data-original-title="Paste in a youtube or soundcloud link!" id="what_do")
-						span.glyphicon.glyphicon-question-sign
-				input(type="text" class="form-control" id="textInputUrl" placeholder="Paste in a youtube or soundcloud link!")
-				span.input-group-btn
-					button.btn.btn-default(type="button" id="btnAdd") Add Trax!
-
-			div.input-group
-				span.input-group-addon
-					Edit URL:
-				span
-					input(type="text" class="form-control" id="playlist_save_url" disabled)
-				span.input-group-btn
-					button(class="btn btn-default" type="button" id="resave_traxlist") Save Traxlist!
+			
 			div.row
 				div.col-md-12(id="traxList")
 

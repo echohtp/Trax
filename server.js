@@ -11,8 +11,8 @@ var SocketIO = require('socket.io')
 
 
 var sOptions = {
-    host: 'localhost',
-    port: 8950
+    host: process.env.IP,
+    port: process.env.PORT
 };
 
 // Create a server with a host and port
@@ -65,6 +65,53 @@ server.route({
 
 server.route({
     method: 'GET',
+    path: '/p/{param*}',
+    handler: function(req, reply) {
+        var fn = Jade.compileFile('layouts/reddit.jade', {});
+        var pOptions = {
+            urls: []
+        };
+        var tUrls = [];
+        var playList = [];
+        var count = 0;
+        var total = 0;
+
+        if (req.params.param) {
+            var tlID  = req.params.param;
+            fbRef.child('p').child(tlID).on('child_added', function(childSnapshot, prevChildName){
+                playList.push(childSnapshot.exportVal());
+                console.log('somethjing added to playList');
+                console.log(childSnapshot.exportVal());
+            });
+            
+            /*
+            var pSplit = req.params.param.split('+');
+            pSplit.forEach(function(sub) {
+                request('http://reddit.com/r/' + sub + '.json', function(error, resp, body) {
+                    if (!error && resp.statusCode == 200) {
+                        total += JSON.parse(body).data.children.length;
+                        console.log('total: ' + total);
+
+                        JSON.parse(body).data.children.forEach(function(child) {
+                            tUrls.push(child.data.url);
+                            count++;
+                            console.log('count:' + count);
+                            if (count == total) {
+                                console.log('calling html');
+                                pOptions.urls = tUrls;
+                                var html = fn(pOptions);
+                                reply(html);
+                            }
+                        });
+                    }
+                });
+            }); */
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
     path: '/r/{param*}',
     handler: function(req, reply) {
         var fn = Jade.compileFile('layouts/reddit.jade', {});
@@ -90,7 +137,7 @@ server.route({
                             if (count == total) {
                                 console.log('calling html');
                                 pOptions.urls = tUrls;
-                                html = fn(pOptions);
+                                var html = fn(pOptions);
                                 reply(html);
                             }
                         });
@@ -137,6 +184,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function(request, reply){
+        console.log('got something.');
         var fn = Jade.compileFile('layouts/index.jade', {});
         var html = fn(sOptions);
         reply(html);   
@@ -149,7 +197,7 @@ fbRef.on('child_added', function(dSnap) {
     var sObj = {
         provider: dSnap.child('provider').val(),
         url: dSnap.child('url').val()
-    }
+    };
 
     if (sObj.provider === "soundcloud") {
         console.log(dSnap.name() + ":added soundcloud");

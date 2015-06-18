@@ -132,10 +132,18 @@ SC.initialize({
 	client_id: 'd801359914234a52f7138bbce4df18ad',
 });
 
-var fbRef = new Firebase('https://traxlist.firebaseio.com/new/');
-var rId = Math.random().toString(36).substr(2);
-var thisPlayRef = fbRef.child(rId).ref();
+var fbRef = new Firebase('https://traxlist.firebaseio.com/new/p/');
+var tListID = Math.random().toString(36).substr(2);
+var tListRef = fbRef.child(tListID);
 
+
+function saveTraxList(){
+	console.log(traxList.toJSON());
+	var tlObj = traxList.toJSON();
+	tlObj.forEach(function(e){
+		tListRef.push(e);
+	});
+}
 
 function onYouTubePlayerReady(pId){
 	ytplayer = document.getElementById(pId);
@@ -191,6 +199,7 @@ function addTrax(url){
 			var toLoad = traxList.findWhere({'dId': curId});
 			toLoad.load();
 		});
+	
 
 	}else if( url.toLowerCase().indexOf('soundcloud.com') > -1 ){
 		//handle soundcloud
