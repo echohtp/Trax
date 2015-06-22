@@ -26,17 +26,34 @@ html(lang='en')
 
 	body
 		div.container
-			h1 Trax.im - Send Yo Trax Out!
+			div.header
+				ul.nav.nav-pills.pull-right
+					li.btn-xs
+						a(href="/at/") All Traxlists
+					li.btn-xs
+						a(href="/random/") Random
+					li.btn-xs
+						a(href="/faq/") FAQ
+				a(href="/" class="title")
+					h1 SEND YO TRAX OUT
 
-		div.container
-			div.row 
-				form.form-inline
-					div.form-group.group-padding
-						input.form-control( style="width: 700px" type="text" id="textInputUrl" placeholder="Enter a soundcloud or youtube url and press enter!")
-						button.form-control.btn.btn-danger(id="btnAdd") ADD TRAX
+			div.input-group
+				span.input-group-addon
+					a(href="#" rel="tooltip" data-original-title="Paste in a youtube or soundcloud link!" id="what_do")
+						span.glyphicon.glyphicon-question-sign
+				input(type="text" class="form-control" id="textInputUrl" placeholder="Paste in a youtube or soundcloud link!")
+				span.input-group-btn
+					button.btn.btn-default(type="button" id="btnAdd") Add Trax!
 
-
-			div.row(id="traxList")
+			div.input-group
+				span.input-group-addon
+					Edit URL:
+				span
+					input(type="text" class="form-control" id="playlist_save_url" disabled)
+				span.input-group-btn
+					button(class="btn btn-default" type="button" id="resave_traxlist") Save Traxlist!
+			div.row
+				div.col-md-12(id="traxList")
 
 		script(type="text/template" id="sc-container-template")
 			div.sc-container.sc(id!="<%= dId %>" style!="background: url( <%= thumbnail_url %> ) no-repeat center; background-size: 100%;")
